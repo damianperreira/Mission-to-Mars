@@ -1,6 +1,6 @@
 # Mission to Mars
 
-Automate a web browser to visit different websites to extract data about the Mission to Mars. Store it in a NoSQL database, and then render the data in a web application created with Flask. 
+Automate a web browser to visit different websites to extract data about the Mission to Mars. Store it in a NoSQL database, and then render the data in a web application created with Flask.
 
 ### Tools
 
@@ -10,3 +10,8 @@ Automate a web browser to visit different websites to extract data about the Mis
 * Create a web application with Flask to display the data from the web scrape.
 * Create an HTML/CSS portfolio to showcase projects.
 * Use Bootstrap components to polish and customize the portfolio
+
+![mission_to_mars](images/m10_1.png)
+![mission_to_mars](images/m10_2.png)
+![mission_to_mars](images/m10_3.png)
+![mission_to_mars](images/m10_4.png)
