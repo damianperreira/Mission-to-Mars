@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mission to Mars</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+ <body style="background-color:burlywood;">
+    <!--Set Up Containers-->
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+           <h1>Mission to Mars</h1>
+           
+        <!--Mar’s hemispheres (M10 Challenge)-->
+        <div class="row">
+          <div class="thumbnail">
+          <div class="page-header">
+            <h2 class="text-center" style="color:darkblue;"><b>Hemispeheres</b></h2>
+          </div>
+          <!-- Hemispeheres listed by HTML for loop -->
+          {% for hemisphere in mars.hemispheres %}
+            <div class="col-sm-4 col-md-6">
+              <div class="thumbnail">
+                <img src="{{hemisphere.img_url}}">
+                <div class="news_title">
+                    <h3 style="color:darkblue;"><b>{{hemisphere.title}}</b></h3>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        </div>
+     </div>
+ </body>
+</html>

@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import pandas as pd 
 import datetime as dt
 
+def initBrowser():
+    return Browser("chrome", headless=False)
 
 ###################################################
 def mars_news(browser):
@@ -87,6 +89,44 @@ def mars_facts():
     return df.to_html() 
 
 ###################################################
+# Mars Hemispheres image scraping
+
+def mars_hemispheres(browser):
+
+    hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(hemispheres_url)
+
+    # parse html
+    hemispheres_html = browser.html
+    hemispheres_soup = BeautifulSoup(hemispheres_html, 'html.parser')
+
+    # create list to hold scraped hemisphere data
+    hemisphere_data = []
+    # find list of hemispheres using tag+class
+    result_list = hemispheres_soup.find('div', class_='result-list')
+    hemispheres = result_list.find_all('div', class_='item')
+
+    # get title, text and images for each hemisphere
+    for hemisphere in hemispheres:
+        title = hemisphere.find('div', class_='description')
+        #long_text = hemisphere.find('p',class_='')
+        #long_text = browser.find_link_by_partial_text('Mosaic')
+
+        # find elements with link by partial text, remove " Enhanced" (space + text) to find element to click on
+        title_text = title.a.text.replace(' Enhanced', '')
+        browser.click_link_by_partial_text(title_text)
+
+        # parse again avoiding attrubute error. (had trouble using try except) and get each img url
+        hemispheres_html = browser.html
+        hemispheres_soup = BeautifulSoup(hemispheres_html, 'html.parser')
+        image = hemispheres_soup.find('div', class_='downloads').find('ul').find('li')
+        img_url = image.a['href']
+
+        # append the hemispehere data to the list
+        hemisphere_data.append({'title': title_text, 'img_url': img_url})
+    return hemisphere_data
+
+###################################################
 def scrape_all():
     # Set the executable path and initialize the chrome browser in splinter
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
@@ -99,7 +139,8 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
+        "last_modified": dt.datetime.now(),
+        "hemispheres": mars_hemispheres(browser)
     }
     return data
 

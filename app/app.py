@@ -16,6 +16,12 @@ def index():
    mars = mongo.db.mars.find_one()
    return render_template("index.html", mars=mars)
 
+# define route for the hemispheres page
+@app.route("/hemispheres")
+def hemispheres():
+   mars = mongo.db.mars.find_one()
+   return render_template("hemispheres.html", mars=mars)
+
 # setup the scraping route
 @app.route("/scrape")
 def scrape():
