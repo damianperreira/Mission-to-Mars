@@ -49,8 +49,26 @@
 <br> 
         <!--Mar’s hemispheres (M10 Challenge)-->
         <div class="col-md-8">
-            <a href="http://127.0.0.1:5000/hemispheres"><h3 style="color:darkblue;">Click to see Mars Hemispheres</h3></a>
+            <a href="http://127.0.0.1:5000/hemispheres"><h3 style="color:darkblue;">Click to view Hemisphere images</h3></a>
         </div>
+        <div class="row">
+            <div class="thumbnail">
+            <div class="page-header">
+              <h2 class="text-center" style="color:darkblue;"><b>Hemispeheres</b></h2>
+            </div>
+            <!-- Hemispeheres listed by HTML for loop -->
+            {% for hemisphere in mars.hemispheres %}
+              <div class="col-sm-4 col-md-6">
+                <div class="thumbnail">
+                  <img src="{{hemisphere.img_url}}">
+                  <div class="news_title">
+                      <h3 style="color:darkblue;"><b>{{hemisphere.title}}</b></h3>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          </div>
      </div>
  </body>
 </html>
