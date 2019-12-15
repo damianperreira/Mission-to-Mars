@@ -92,7 +92,7 @@ def scrape_all():
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
     browser = Browser('chrome', **executable_path, headless=True)
     news_title, news_paragraph = mars_news(browser)
-    return news_title, news_paragraph
+    #return news_title, news_paragraph
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
